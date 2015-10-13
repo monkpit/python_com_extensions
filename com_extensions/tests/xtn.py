@@ -21,4 +21,24 @@ class IDualApplicationExtensions(ComExtension):
 
     @staticmethod
     def test_attribute(self):
-        pass
+        return self
+
+class IShellDispatch5Extensions(ComExtension):
+    progid = "Shell.Application"
+    submodules = ["IShellDispatch5"]
+
+    @staticmethod
+    def test_attribute(self):
+        return self
+
+class MultiSubmoduleExtensions(ComExtension):
+    progid = "Shell.Application"
+    submodules = ["IShellDispatch5", "DShellFolderViewEvents"]
+
+    @staticmethod
+    def something1(self):
+        return self
+
+    @staticmethod
+    def something2(self):
+        return self

@@ -1,1 +1,1 @@
-from .com_extension import ComExtension
+from .com_extension import ComExtension, ComExtensionError
