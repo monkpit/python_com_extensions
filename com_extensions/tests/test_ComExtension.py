@@ -30,39 +30,39 @@ class TestComExtension(unittest.TestCase):
         with self.assertRaisesRegexp(ComExtensionError, "Does it need to be generated"):
             ComExtension_with_bad_progid.register()
 
-    def test_raises_ComExtensionError_with_no_submodules(self):
-        with self.assertRaisesRegexp(ComExtensionError, "'submodules' must contain a list of COM classes"):
-            ComExtension_with_no_submodules.register()
+    def test_raises_ComExtensionError_with_no_extends(self):
+        with self.assertRaisesRegexp(ComExtensionError, "'extends' must contain a list of COM classes"):
+            ComExtension_with_no_extends.register()
 
     def test_raises_ComExtensionError_with_bad_single_submodule(self):
         with self.assertRaisesRegexp(ComExtensionError, "did not contain submodule"):
             ComExtension_with_bad_single_submodule.register()
 
-    def test_raises_ComExtensionError_with_bad_submodules(self):
+    def test_raises_ComExtensionError_with_bad_extends(self):
         with self.assertRaisesRegexp(ComExtensionError, "did not contain submodule"):
-            ComExtension_with_bad_submodules.register()
+            ComExtension_with_bad_extends.register()
 
 
 class ComExtension_with_no_progid(ComExtension):
     progid = ''
-    submodules = ['submodule']
+    extends = ['submodule']
 
 
 class ComExtension_with_bad_progid(ComExtension):
     progid = 'noodles'
-    submodules = ['submodule']
+    extends = ['submodule']
 
 
-class ComExtension_with_no_submodules(ComExtension):
+class ComExtension_with_no_extends(ComExtension):
     progid = 'Shell.Application'
-    submodules = None
+    extends = None
 
 
 class ComExtension_with_bad_single_submodule(ComExtension):
     progid = 'Shell.Application'
-    submodules = ['INoodles']
+    extends = ['INoodles']
 
 
-class ComExtension_with_bad_submodules(ComExtension):
+class ComExtension_with_bad_extends(ComExtension):
     progid = 'Shell.Application'
-    submodules = ['INoodles', 'INoodles2']
+    extends = ['INoodles', 'INoodles2']

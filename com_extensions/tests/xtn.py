@@ -2,7 +2,7 @@ from com_extensions import ComExtension
 
 class IGroupExtensions(ComExtension):
     progid = "Esprit.Application"
-    submodules = ["IGroup"]
+    extends = ["IGroup"]
 
     @staticmethod
     def __iter__(self):
@@ -17,7 +17,7 @@ class IGroupExtensions(ComExtension):
 
 class IDualApplicationExtensions(ComExtension):
     progid = "Esprit.Application"
-    submodules = ["IDualApplication"]
+    extends = ["IDualApplication"]
 
     @staticmethod
     def test_attribute(self):
@@ -25,7 +25,7 @@ class IDualApplicationExtensions(ComExtension):
 
 class IShellDispatch5Extensions(ComExtension):
     progid = "Shell.Application"
-    submodules = ["IShellDispatch5"]
+    extends = ["IShellDispatch5"]
 
     @staticmethod
     def test_attribute(self):
@@ -33,7 +33,7 @@ class IShellDispatch5Extensions(ComExtension):
 
 class MultiSubmoduleExtensions(ComExtension):
     progid = "Shell.Application"
-    submodules = ["IShellDispatch5", "DShellFolderViewEvents"]
+    extends = ["IShellDispatch5", "DShellFolderViewEvents"]
 
     @staticmethod
     def something1(self):
