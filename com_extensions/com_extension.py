@@ -13,7 +13,7 @@ class ComExtensionError(AttributeError):
 
 class ComExtension(object):
     progid = None
-    submodules = ['']
+    extends = ['']
 
     @classmethod
     def register(cls):
@@ -28,13 +28,13 @@ class ComExtension(object):
 
         logger.debug("Found methods: {methods}".format(methods=methods))
 
-        if cls.submodules is None \
-                or cls.submodules == [] \
-                or cls.submodules == [None]:
-            cls.submodules = ['']
+        if cls.extends is None \
+                or cls.extends == [] \
+                or cls.extends == [None]:
+            cls.extends = ['']
 
-        if cls.submodules == ['']:
-            raise ComExtensionError("'submodules' must contain a list of COM classes defined in <<clsid>>.py")
+        if cls.extends == ['']:
+            raise ComExtensionError("'extends' must contain a list of COM classes defined in <<clsid>>.py")
         else:
 
             module = win32com.client.gencache.GetModuleForProgID(cls.progid)
@@ -55,7 +55,7 @@ class ComExtension(object):
                 else:
                     logger.debug("Successfully created file for {progid}.".format(progid=cls.progid))
 
-        for submodule_name in cls.submodules:
+        for submodule_name in cls.extends:
             submodule = getattr(module, submodule_name, None)
             if submodule is None:
                 raise ComExtensionError("ComExtension error: module '{module}' did not contain submodule '{submodule_name}'.".format(module=module, submodule_name=submodule_name))
